@@ -44,6 +44,7 @@ h5,
 h6 {
   /* Change heading typefaces here */
   font-family: 'Poppins', sans-serif;
+  color: white !important;
   margin-bottom: 0 !important;
   line-height: 1.5rem;
 }
