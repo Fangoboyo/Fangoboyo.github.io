@@ -4,6 +4,7 @@
 html {
   /* Change default typefaces here */
   font-family: 'Poppins', sans-serif;
+  color: white !important; 
   font-size: 137.5%;
   -webkit-font-smoothing: antialiased;
 }
