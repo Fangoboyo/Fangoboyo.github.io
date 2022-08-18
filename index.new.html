@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.22.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="./css/typebase.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+    <!-- add favicon -->
+    <link rel="icon" href="./img/favicon.ico" />
+    <title>Home | BnogoCarft</title>
+    <!-- import jsdelivr package -->
+    <style>
+        .sec1bg{
+            background-color: rgb(78, 89, 107);
+        }
+        .sec2bg{
+            background-color: rgb(66, 75, 92) !important;
+        }
+        .center{
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .has-text-centered {
+            text-align: center !important;
+          }
+          
+          .has-text-justified {
+            text-align: justify !important;
+          }
+          
+          .has-text-left {
+            text-align: left !important;
+          }
+          
+          .has-text-right {
+            text-align: right !important;
+          }
+    </style>
+</head>
+<body>
+<section class="sec1bg has-text-centered">
+    <h1>
+        <b>BongoCraft</b>
+    </h1>
+    <p>Online: <span id="online">__</span>/<span id="max">__</span></p>
+    <br>
+</section>
+<script>
+var socket = new WebSocket('wss://mc.primitt.dev/survival');
+socket.onopen = function(e) {
+  socket.send('Accept: MOTD');
+};
+socket.onmessage = function(e) {
+  if (typeof e.data == "string"){
+    var data = JSON.parse(e.data);
+    var motd = data.data;
+      document.getElementById("max").innerHTML = motd.max;
+      document.getElementById("online").innerHTML = motd.online;
+    } 
+  };
+socket.onclose = function(e) {
+  // reconnect
+  socket.send('Accept: MOTD');
+}
+</script>
+</body>
+</html>
+<html>
